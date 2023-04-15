@@ -151,6 +151,12 @@ public class SwiftApiVideoLiveStreamPlugin: NSObject, FlutterPlugin {
             }
             flutterView.isMuted = isMuted
             result(nil)
+        case "getVideoSize":
+            guard let flutterView = flutterView else {
+                result(FlutterError(code: "missing_live_stream", message: "Live stream must exist at this point", details: nil))
+                return
+            }]
+            result(["width": flutterView.videoConfig.resolution.size.width, "height": flutterView.videoConfig.resolution.size.height])
         default:
             result(FlutterMethodNotImplemented)
         }
